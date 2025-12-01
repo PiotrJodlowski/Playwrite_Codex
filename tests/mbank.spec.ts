@@ -19,7 +19,12 @@ test('navigates to fundusze from inwestycje i oszczędności', async ({ page }) 
 test('opens product details from product tile', async ({ page }) => {
   await page.goto('https://www.mbank.pl/indywidualny/');
 
-  const productTileCheckButton = page.locator("//*[@data-test-id='ProductTile:Button:Check']");
+  await page.locator("//p[text()='inwestycje i oszczędności']").click();
+  await page.locator("//p[text()='fundusze']").click();
+
+  const productTileCheckButton = page.locator("//*[@data-test-id='ProductTile:Button:Check']").first();
   await expect(productTileCheckButton).toBeVisible();
   await productTileCheckButton.click();
+  const promotionLabel = page.getByText('skorzystaj z promocji', { exact: false }).first();
+  await expect(promotionLabel).toBeVisible();
 });
