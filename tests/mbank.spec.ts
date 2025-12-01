@@ -10,8 +10,8 @@ test('has title', async ({ page }) => {
 test('navigates to fundusze from inwestycje i oszczędności', async ({ page }) => {
   await page.goto('https://www.mbank.pl/indywidualny/');
 
-  await page.getByRole('link', { name: /inwestycje i oszczędności/i }).click();
-  await page.getByRole('link', { name: /fundusze/i }).click();
+  await page.locator("//p[text()='inwestycje i oszczędności']").click();
+  await page.locator("//p[text()='fundusze']").click();
 
   await expect(page).toHaveURL(/fundusze/i);
 });
